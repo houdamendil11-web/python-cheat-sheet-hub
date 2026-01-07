@@ -167,3 +167,135 @@
     border-color: hsl(var(--burgundy-muted));
   }
 }
+
+/* Print styles for one-page PDF */
+@media print {
+  @page {
+    size: A4 landscape;
+    margin: 8mm;
+  }
+
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  body {
+    font-size: 6pt !important;
+    line-height: 1.2 !important;
+    background: white !important;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  /* Hide navigation and expand all sections */
+  nav, .sticky {
+    display: none !important;
+  }
+
+  /* Make all accordion items open by default */
+  [data-state="closed"] > [data-radix-collection-item] {
+    display: block !important;
+  }
+
+  [data-state="closed"] > div[role="region"] {
+    display: block !important;
+    height: auto !important;
+  }
+
+  /* Compact layout */
+  .container {
+    max-width: 100% !important;
+    padding: 0 !important;
+  }
+
+  main {
+    padding: 0 !important;
+  }
+
+  /* Grid layout for print */
+  .print-grid {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 4px !important;
+    page-break-inside: avoid;
+  }
+
+  .print-section {
+    break-inside: avoid;
+    page-break-inside: avoid;
+    font-size: 5.5pt !important;
+  }
+
+  .print-section h3 {
+    font-size: 7pt !important;
+    margin-bottom: 2px !important;
+    padding: 2px 4px !important;
+  }
+
+  .print-section h4 {
+    font-size: 6pt !important;
+    margin: 2px 0 1px 0 !important;
+  }
+
+  .print-section p {
+    margin: 1px 0 !important;
+    font-size: 5pt !important;
+  }
+
+  .print-section pre,
+  .print-section code {
+    font-size: 5pt !important;
+    padding: 1px 2px !important;
+    margin: 1px 0 !important;
+    line-height: 1.1 !important;
+  }
+
+  .print-section ul {
+    margin: 1px 0 !important;
+    padding-left: 8px !important;
+  }
+
+  .print-section li {
+    font-size: 5pt !important;
+    margin: 0 !important;
+  }
+
+  /* Header compact */
+  header {
+    padding: 4px !important;
+    margin-bottom: 4px !important;
+  }
+
+  header h1 {
+    font-size: 12pt !important;
+  }
+
+  header p {
+    font-size: 6pt !important;
+    margin: 0 !important;
+  }
+
+  /* Footer compact */
+  footer {
+    padding: 2px !important;
+    margin-top: 4px !important;
+    font-size: 5pt !important;
+  }
+
+  /* Card styles */
+  .card-elevated {
+    box-shadow: none !important;
+    border: 0.5px solid hsl(var(--burgundy-muted)) !important;
+    padding: 2px !important;
+  }
+
+  /* Accordion content always visible */
+  [data-radix-accordion-content] {
+    display: block !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+}

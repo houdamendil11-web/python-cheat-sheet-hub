@@ -898,33 +898,47 @@ os.path.join(a, b)    # Joindre chemins`} />
     },
   ];
 
+  const handlePrint = () => {
+    window.print();
+  };
+
   return (
     <div className="min-h-screen bg-background">
+      {/* Print Button */}
+      <div className="no-print fixed bottom-6 right-6 z-50">
+        <button
+          onClick={handlePrint}
+          className="bg-burgundy text-primary-foreground px-4 py-2 rounded-full shadow-lg hover:bg-accent transition-colors flex items-center gap-2 font-medium"
+        >
+          <span>🖨️</span> Imprimer en PDF
+        </button>
+      </div>
+
       {/* Header */}
-      <header className="hero-gradient text-primary-foreground py-12 px-4">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex items-center gap-4 mb-4">
-            <div className="w-16 h-16 rounded-2xl bg-primary-foreground/20 flex items-center justify-center backdrop-blur-sm">
-              <span className="text-3xl">🐍</span>
+      <header className="hero-gradient text-primary-foreground py-12 px-4 print:py-2 print:px-2">
+        <div className="max-w-6xl mx-auto print:max-w-full">
+          <div className="flex items-center gap-4 mb-4 print:gap-2 print:mb-1">
+            <div className="w-16 h-16 rounded-2xl bg-primary-foreground/20 flex items-center justify-center backdrop-blur-sm print:w-8 print:h-8 print:rounded-lg">
+              <span className="text-3xl print:text-base">🐍</span>
             </div>
             <div>
-              <h1 className="text-3xl md:text-4xl font-bold tracking-tight" style={{ fontFamily: 'var(--font-display)' }}>
+              <h1 className="text-3xl md:text-4xl font-bold tracking-tight print:text-lg" style={{ fontFamily: 'var(--font-display)' }}>
                 Aide-Mémoire Python
               </h1>
-              <p className="text-primary-foreground/80 mt-1">
+              <p className="text-primary-foreground/80 mt-1 print:text-xs print:mt-0">
                 Module 2 : PP (Programmation Python)
               </p>
             </div>
           </div>
-          <p className="text-primary-foreground/70 max-w-2xl text-sm md:text-base leading-relaxed">
+          <p className="text-primary-foreground/70 max-w-2xl text-sm md:text-base leading-relaxed print:hidden">
             Référence complète couvrant les fondamentaux de Python : variables, structures de contrôle, 
             fonctions, modules et bien plus encore.
           </p>
         </div>
       </header>
 
-      {/* Navigation */}
-      <nav className="sticky top-0 z-10 bg-card/95 backdrop-blur border-b border-burgundy-muted py-3 px-4">
+      {/* Navigation - hidden on print */}
+      <nav className="sticky top-0 z-10 bg-card/95 backdrop-blur border-b border-burgundy-muted py-3 px-4 no-print">
         <div className="max-w-6xl mx-auto">
           <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide">
             {sections.map((section) => (
@@ -944,10 +958,10 @@ os.path.join(a, b)    # Joindre chemins`} />
       </nav>
 
       {/* Content */}
-      <main className="max-w-6xl mx-auto px-4 py-8">
-        <div className="grid gap-6">
+      <main className="max-w-6xl mx-auto px-4 py-8 print:max-w-full print:px-0 print:py-2">
+        <div className="grid gap-6 print:grid-cols-4 print:gap-1 print-grid">
           {sections.map((section) => (
-            <div key={section.id} id={section.id} className="scroll-mt-20">
+            <div key={section.id} id={section.id} className="scroll-mt-20 print:scroll-mt-0 print-section">
               <CheatsheetSection {...section} />
             </div>
           ))}
@@ -955,15 +969,15 @@ os.path.join(a, b)    # Joindre chemins`} />
       </main>
 
       {/* Footer */}
-      <footer className="bg-burgundy-muted border-t border-burgundy-muted py-6 px-4 mt-8">
-        <div className="max-w-6xl mx-auto text-center text-sm text-muted-foreground">
-          <p>
+      <footer className="bg-burgundy-muted border-t border-burgundy-muted py-6 px-4 mt-8 print:py-1 print:px-2 print:mt-1">
+        <div className="max-w-6xl mx-auto text-center text-sm text-muted-foreground print:max-w-full print:text-xs">
+          <p className="print:hidden">
             Aide-Mémoire Python — Module 2 : Programmation Python
           </p>
-          <p className="mt-1 text-burgundy">
+          <p className="mt-1 text-burgundy print:mt-0 print:inline">
             🐍 Happy Coding!
           </p>
-          <p className="mt-4 text-burgundy font-semibold">
+          <p className="mt-4 text-burgundy font-semibold print:mt-0 print:inline print:ml-4">
             Réalisée par MENDIL Houda
           </p>
         </div>
