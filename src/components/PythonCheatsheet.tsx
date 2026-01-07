@@ -963,6 +963,9 @@ os.path.join(a, b)    # Joindre chemins`} />
           <p className="mt-1 text-burgundy">
             🐍 Happy Coding!
           </p>
+          <p className="mt-4 text-burgundy font-semibold">
+            Réalisée par MENDIL Houda
+          </p>
         </div>
       </footer>
     </div>
